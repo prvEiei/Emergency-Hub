@@ -41,7 +41,22 @@ const categoryImages = {
         "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80",
 
     "หน่วยงานท้องถิ่น":
-        "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=80"
+        "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=80",
+    
+    "สังคม":
+        "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1000&q=80",
+
+    "สาธารณูปโภค":
+        "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1000&q=80",
+
+    "หน่วยงานภาครัฐ":
+        "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=80",
+
+    "กู้ภัย":
+        "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1000&q=80",
+
+    "ยานพาหนะ":
+        "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1000&q=80"
 
 };
 
@@ -241,7 +256,7 @@ function displayData() {
                         " " +
                         item.description
                     )
-                    .toLowerCase();
+                        .toLowerCase();
 
 
                 return (
