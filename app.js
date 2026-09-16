@@ -1,6 +1,55 @@
 let emergencyData = [];
 
 
+/* =========================
+   รูปภาพตามหมวดหมู่
+========================= */
+
+const categoryImages = {
+
+    "ตำรวจ":
+        "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1000&q=80",
+
+    "การแพทย์":
+        "https://images.unsplash.com/photo-1583324113626-70df0f4deaab?auto=format&fit=crop&w=1000&q=80",
+
+    "ดับเพลิงและกู้ภัย":
+        "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1000&q=80",
+
+    "ท่องเที่ยว":
+        "https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=1000&q=80",
+
+    "สาธารณภัย":
+        "https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1000&q=80",
+
+    "ทางน้ำและทางทะเล":
+        "https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=1000&q=80",
+
+    "สุขภาพจิต":
+        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1000&q=80",
+
+    "สาธารณสุข":
+        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80",
+
+    "ประกันสังคม":
+        "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1000&q=80",
+
+    "เทคโนโลยี":
+        "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80",
+
+    "การเดินทาง":
+        "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80",
+
+    "หน่วยงานท้องถิ่น":
+        "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=80"
+
+};
+
+
+/* =========================
+   โหลดข้อมูล
+========================= */
+
 async function loadData() {
 
     const container =
@@ -34,6 +83,7 @@ async function loadData() {
 
         updateStats();
 
+
     } catch (error) {
 
         console.error(error);
@@ -52,7 +102,7 @@ async function loadData() {
                 </h3>
 
                 <p>
-                    กรุณาเปิดเว็บไซต์ผ่าน Live Server
+                    กรุณาตรวจสอบไฟล์ data.json
                 </p>
 
             </div>
@@ -65,7 +115,7 @@ async function loadData() {
 
 
 /* =========================
-   CATEGORY
+   สร้างรายการหมวดหมู่
 ========================= */
 
 function createCategoryList() {
@@ -102,6 +152,13 @@ function createCategoryList() {
         );
 
 
+    select.innerHTML = `
+        <option value="">
+            ทุกหมวดหมู่
+        </option>
+    `;
+
+
     categories.forEach(
         function (category) {
 
@@ -111,12 +168,16 @@ function createCategoryList() {
                 );
 
 
-            option.value = category;
+            option.value =
+                category;
 
-            option.textContent = category;
+            option.textContent =
+                category;
 
 
-            select.appendChild(option);
+            select.appendChild(
+                option
+            );
 
         }
     );
@@ -125,7 +186,7 @@ function createCategoryList() {
 
 
 /* =========================
-   DISPLAY DATA
+   แสดงข้อมูล
 ========================= */
 
 function displayData() {
@@ -184,15 +245,23 @@ function displayData() {
 
 
                 return (
-                    text.includes(search) &&
+
+                    text.includes(search)
+
+                    &&
+
                     (
                         category === "" ||
                         item.category === category
-                    ) &&
+                    )
+
+                    &&
+
                     (
                         type === "" ||
                         item.type === type
                     )
+
                 );
 
             }
@@ -242,11 +311,29 @@ function displayData() {
                 );
 
 
-            card.className = "card";
+            card.className =
+                "card";
 
 
             card.style.animationDelay =
                 (index * 0.04) + "s";
+
+
+            /*
+                เลือกรูปตามหมวดหมู่
+                ถ้าไม่มีรูป จะใช้รูปสำรอง
+            */
+
+            const image =
+                categoryImages[item.category]
+                ||
+                "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1000&q=80";
+
+
+            card.style.setProperty(
+                "--card-image",
+                `url("${image}")`
+            );
 
 
             let typeClass =
@@ -265,47 +352,66 @@ function displayData() {
 
             card.innerHTML = `
 
-                <a
-                    class="card-number"
-                    href="tel:${item.number}"
-                >
-                    ${item.number}
-                </a>
+                <div class="card-image">
 
+                    <div class="card-image-overlay">
 
-                <h3>
-                    ${item.name}
-                </h3>
+                        <span class="image-icon">
+                            ${getCategoryIcon(item.category)}
+                        </span>
 
-
-                <div class="card-tags">
-
-                    <span class="tag">
-                        ${item.category}
-                    </span>
-
-
-                    <span class="tag ${typeClass}">
-                        ${item.type}
-                    </span>
+                    </div>
 
                 </div>
 
 
-                <p class="card-description">
-                    ${item.description}
-                </p>
+                <div class="card-content">
+
+                    <a
+                        class="card-number"
+                        href="tel:${item.number}"
+                    >
+                        ${item.number}
+                    </a>
 
 
-                <p class="card-source">
-                    แหล่งข้อมูล:
-                    ${item.source || "-"}
-                </p>
+                    <h3>
+                        ${item.name}
+                    </h3>
+
+
+                    <div class="card-tags">
+
+                        <span class="tag">
+                            ${item.category}
+                        </span>
+
+
+                        <span class="tag ${typeClass}">
+                            ${item.type}
+                        </span>
+
+                    </div>
+
+
+                    <p class="card-description">
+                        ${item.description}
+                    </p>
+
+
+                    <p class="card-source">
+                        แหล่งข้อมูล:
+                        ${item.source || "-"}
+                    </p>
+
+                </div>
 
             `;
 
 
-            container.appendChild(card);
+            container.appendChild(
+                card
+            );
 
         }
     );
@@ -314,7 +420,47 @@ function displayData() {
 
 
 /* =========================
-   STATISTICS
+   ไอคอนแต่ละหมวด
+========================= */
+
+function getCategoryIcon(category) {
+
+    const icons = {
+
+        "ตำรวจ": "🚓",
+
+        "การแพทย์": "🚑",
+
+        "ดับเพลิงและกู้ภัย": "🚒",
+
+        "ท่องเที่ยว": "🧳",
+
+        "สาธารณภัย": "🆘",
+
+        "ทางน้ำและทางทะเล": "🚤",
+
+        "สุขภาพจิต": "🧠",
+
+        "สาธารณสุข": "🏥",
+
+        "ประกันสังคม": "📋",
+
+        "เทคโนโลยี": "💻",
+
+        "การเดินทาง": "🚌",
+
+        "หน่วยงานท้องถิ่น": "🏛️"
+
+    };
+
+
+    return icons[category] || "☎️";
+
+}
+
+
+/* =========================
+   สถิติ
 ========================= */
 
 function updateStats() {
@@ -357,7 +503,7 @@ function updateStats() {
 
 
 /* =========================
-   START
+   เริ่มต้น
 ========================= */
 
 loadData();
