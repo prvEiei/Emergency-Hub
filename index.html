@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Emergency Hub Thailand
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+                🚨 Emergency Hub Thailand
+            </a>
+
+            <span class="nav-status">
+                ● ข้อมูลสายด่วน
+            </span>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-text">
+
+                <span class="hero-label">
+                    EMERGENCY DIRECTORY
+                </span>
+
+                <h1>
+                    เบอร์โทรฉุกเฉิน<br>
+                    <span>ประเทศไทย</span>
+                </h1>
+
+                <p>
+                    รวมหมายเลขโทรศัพท์ฉุกเฉินและสายด่วน
+                    สำหรับติดต่อหน่วยงานต่าง ๆ
+                    ค้นหาได้ง่ายในที่เดียว
+                </p>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="hero-card-icon">
+                    ☎
+                </div>
+
+                <div>
+
+                    <span>
+                        เหตุด่วนเหตุร้าย
+                    </span>
+
+                    <a href="tel:191">
+                        191
+                    </a>
+
+                    <small>
+                        ตำรวจ
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-stats">
+
+            <div class="hero-stat">
+
+                <strong id="totalNumbers">
+                    0
+                </strong>
+
+                <span>
+                    เบอร์ทั้งหมด
+                </span>
+
+            </div>
+
+
+            <div class="hero-stat">
+
+                <strong id="totalCategories">
+                    0
+                </strong>
+
+                <span>
+                    หมวดหมู่
+                </span>
+
+            </div>
+
+
+            <div class="hero-stat">
+
+                <strong>
+                    24/7
+                </strong>
+
+                <span>
+                    เข้าถึงข้อมูล
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- SEARCH -->
+
+    <section class="search-section">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                DIRECTORY
+            </span>
+
+            <h2>
+                ค้นหาเบอร์โทรฉุกเฉิน
+            </h2>
+
+            <p>
+                ค้นหาจากหมายเลข ชื่อหน่วยงาน
+                หรือเลือกหมวดหมู่ที่ต้องการ
+            </p>
+
+        </div>
+
+
+        <div class="search-box">
+
+            <div class="search-input">
+
+                <span>
+                    🔍
+                </span>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="ค้นหาเบอร์โทร หรือชื่อหน่วยงาน..."
+                    oninput="displayData()"
+                >
+
+            </div>
+
+
+            <select
+                id="categoryFilter"
+                onchange="displayData()"
+            >
+
+                <option value="">
+                    ทุกหมวดหมู่
+                </option>
+
+            </select>
+
+
+            <select
+                id="typeFilter"
+                onchange="displayData()"
+            >
+
+                <option value="">
+                    ทุกประเภท
+                </option>
+
+                <option value="รัฐบาล">
+                    🏛️ รัฐบาล
+                </option>
+
+                <option value="เอกชน">
+                    🏢 เอกชน
+                </option>
+
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <!-- DATA -->
+
+    <main class="data-section">
+
+        <div
+            id="resultInfo"
+            class="result-info"
+        >
+        </div>
+
+
+        <div
+            id="dataContainer"
+            class="data-grid"
+        >
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div>
+
+                <strong>
+                    🚨 Emergency Hub Thailand
+                </strong>
+
+                <p>
+                    ศูนย์รวมข้อมูลหมายเลขโทรศัพท์ฉุกเฉิน
+                </p>
+
+            </div>
+
+
+            <div class="footer-note">
+
+                <p>
+                    เว็บไซต์สำหรับให้ข้อมูลและอำนวยความสะดวก
+                </p>
+
+                <p>
+                    กรุณาตรวจสอบข้อมูลกับหน่วยงานที่เกี่ยวข้อง
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
